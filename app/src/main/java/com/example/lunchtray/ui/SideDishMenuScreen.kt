@@ -44,7 +44,7 @@ fun SideDishMenuScreen(
     )
 }
 
-@Preview
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SideDishMenuPreview(){
     SideDishMenuScreen(
