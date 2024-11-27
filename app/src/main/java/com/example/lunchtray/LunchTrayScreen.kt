@@ -109,7 +109,9 @@ fun LunchTrayApp() {
         NavHost(
             navController = navController,
             startDestination = LunchTrayScreen.START.name,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(dimensionResource((R.dimen.padding_medium)))
         ) {
             composable(route = LunchTrayScreen.START.name) {
                 StartOrderScreen(
@@ -118,7 +120,6 @@ fun LunchTrayApp() {
                     },
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(dimensionResource((R.dimen.padding_medium)))
                 )
             }
             composable(route = LunchTrayScreen.ENTREE.name) {
@@ -132,7 +133,8 @@ fun LunchTrayApp() {
                     },
                     options = DataSource.entreeMenuItems,
                     onSelectionChanged = { viewModel.updateEntree(it) },
-                    modifier = Modifier.fillMaxHeight()
+                    modifier = Modifier
+                        .fillMaxSize()
                 )
             }
             composable(route = LunchTrayScreen.SIDEDISH.name) {
@@ -146,7 +148,7 @@ fun LunchTrayApp() {
                     },
                     options = DataSource.sideDishMenuItems,
                     onSelectionChanged = { viewModel.updateSideDish(it) },
-                    modifier = Modifier.fillMaxHeight()
+                    modifier = Modifier.fillMaxSize()
                 )
             }
             composable(route = LunchTrayScreen.ACCOMPANIMENT.name) {
@@ -160,7 +162,7 @@ fun LunchTrayApp() {
                     },
                     options = DataSource.accompanimentMenuItems,
                     onSelectionChanged = { viewModel.updateAccompaniment(it) },
-                    modifier = Modifier.fillMaxHeight()
+                    modifier = Modifier.fillMaxSize()
                 )
             }
             composable(route = LunchTrayScreen.CHECKOUT.name) {
@@ -173,7 +175,7 @@ fun LunchTrayApp() {
                         )
                     },
                     orderUiState = uiState,
-                    modifier = Modifier.fillMaxHeight()
+                    modifier = Modifier.fillMaxSize()
                 )
             }
         }
