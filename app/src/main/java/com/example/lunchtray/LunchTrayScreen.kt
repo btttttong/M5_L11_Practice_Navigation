@@ -50,7 +50,7 @@ import com.example.lunchtray.ui.OrderViewModel
 import com.example.lunchtray.ui.SideDishMenuScreen
 import com.example.lunchtray.ui.StartOrderScreen
 
-// TODO: enum class
+
 enum class LunchTrayScreen(@StringRes val title: Int) {
     START(title = R.string.app_name),
     ENTREE(title = R.string.choose_entree),
@@ -59,9 +59,6 @@ enum class LunchTrayScreen(@StringRes val title: Int) {
     CHECKOUT(title = R.string.order_checkout)
 }
 
-
-
-// TODO: AppBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LunchTrayAppBar(
@@ -89,22 +86,18 @@ fun LunchTrayAppBar(
     )
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LunchTrayApp() {
-//TODO: Create Controller and initialization
-
     val viewModel: OrderViewModel = viewModel()
     val navController: NavHostController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = LunchTrayScreen.valueOf(
-        backStackEntry?.destination?.route?: LunchTrayScreen.START.name
+        backStackEntry?.destination?.route ?: LunchTrayScreen.START.name
     )
 
     Scaffold(
         topBar = {
-            // TODO: AppBar
             LunchTrayAppBar(
                 canNavigateBack = navController.previousBackStackEntry != null,
                 currentScreen = currentScreen,
@@ -113,8 +106,6 @@ fun LunchTrayApp() {
         }
     ) { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
-
-        // TODO: Navigation host
         NavHost(
             navController = navController,
             startDestination = LunchTrayScreen.START.name,
@@ -185,7 +176,6 @@ fun LunchTrayApp() {
                     modifier = Modifier.fillMaxHeight()
                 )
             }
-
         }
     }
 }
