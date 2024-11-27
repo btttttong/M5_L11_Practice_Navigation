@@ -123,7 +123,6 @@ fun LunchTrayApp() {
             composable(route = LunchTrayScreen.START.name) {
                 StartOrderScreen(
                     onStartOrderButtonClicked = {
-//                        viewModel.setQuantity(it)
                         navController.navigate(LunchTrayScreen.ENTREE.name)
                     },
                     modifier = Modifier
@@ -141,7 +140,7 @@ fun LunchTrayApp() {
                         )
                     },
                     options = DataSource.entreeMenuItems,
-                    onSelectionChanged = { },
+                    onSelectionChanged = { viewModel.updateEntree(it) },
                     modifier = Modifier.fillMaxHeight()
                 )
             }
@@ -155,7 +154,7 @@ fun LunchTrayApp() {
                         )
                     },
                     options = DataSource.sideDishMenuItems,
-                    onSelectionChanged = { },
+                    onSelectionChanged = { viewModel.updateSideDish(it) },
                     modifier = Modifier.fillMaxHeight()
                 )
             }
@@ -169,13 +168,13 @@ fun LunchTrayApp() {
                         )
                     },
                     options = DataSource.accompanimentMenuItems,
-                    onSelectionChanged = { },
+                    onSelectionChanged = { viewModel.updateAccompaniment(it) },
                     modifier = Modifier.fillMaxHeight()
                 )
             }
             composable(route = LunchTrayScreen.CHECKOUT.name) {
                 CheckoutScreen(
-                    onNextButtonClicked = { navController.navigate((LunchTrayScreen.CHECKOUT.name)) },
+                    onNextButtonClicked = { navController.navigate((LunchTrayScreen.START.name)) },
                     onCancelButtonClicked = {
                         cancelOrderAndNavigateToStart(
                             viewModel,
